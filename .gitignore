@@ -1,0 +1,82 @@
+# macOS / Windows
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editors and local tooling (root only; keep vendored project configs)
+/.idea/
+/.vscode/
+/.cursor/
+/.claude/
+*.swp
+*.swo
+*~
+*.iml
+
+# Secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+credentials.json
+
+# Nested clone metadata.
+# open-source/* are full git clones; ignoring their .git keeps working trees
+# as regular files instead of gitlinks, and drops ~200MB of foreign history.
+**/.git
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node / frontend (generated if someone installs or builds a vendored project)
+node_modules/
+.pnpm-store/
+.turbo/
+.cache/
+*.tsbuildinfo
+*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+htmlcov/
+.venv/
+venv/
+ENV/
+
+# JVM / Maven / Gradle
+target/
+.gradle/
+*.class
+
+# Dart / Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+**/xcuserdata/
+**/DerivedData/
+local.properties
+
+# Rust
+# (Cargo build output shares the Maven `target/` pattern above)
+
+# Go test binaries
+*.test
+*.out
