@@ -13,9 +13,11 @@
       --text-secondary: #6E6E73;
       --border-color: #E5E5EA;
       --accent-color: #1B3A4B;
+      --accent-tag-bg: #EAEFF2;
       --table-header-bg: #F2F2F7;
       --button-bg: #0B0D0E;
       --button-text: #FFFFFF;
+      --highlight-border: #D1D5DB;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -25,9 +27,11 @@
         --text-secondary: #A1A1A6;
         --border-color: #2C2C2E;
         --accent-color: #64B5F6;
+        --accent-tag-bg: #1A2733;
         --table-header-bg: #202326;
         --button-bg: #F5F5F7;
         --button-text: #0B0D0E;
+        --highlight-border: #3A3D40;
       }
     }
     * {
@@ -43,7 +47,7 @@
       padding: 40px 16px 80px;
     }
     .container {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
     }
     header {
@@ -59,6 +63,7 @@
       background-color: #0B0D0E;
       display: inline-block;
       overflow: hidden;
+      border: 1px solid var(--border-color);
     }
     .app-icon img {
       width: 100%;
@@ -66,29 +71,35 @@
       object-fit: cover;
     }
     h1 {
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 700;
       letter-spacing: -0.5px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .subtitle {
       font-size: 17px;
       color: var(--text-secondary);
-      max-width: 580px;
+      max-width: 660px;
       margin: 0 auto 24px;
     }
     .nav-links {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .nav-row {
+      display: flex;
       justify-content: center;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 16px;
     }
     .btn {
       display: inline-flex;
       align-items: center;
-      padding: 10px 22px;
-      font-size: 15px;
+      padding: 10px 20px;
+      font-size: 14.5px;
       font-weight: 500;
       border-radius: 24px;
       text-decoration: none;
@@ -109,40 +120,80 @@
     }
     .section-card {
       background: var(--card-bg);
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 32px;
       border: 1px solid var(--border-color);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
-    h2 {
+    .section-card h2 {
       font-size: 22px;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 10px;
       color: var(--text-main);
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .feature-item {
-      padding: 16px;
-      background: var(--table-header-bg);
-      border-radius: 12px;
+    .section-desc {
       font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 22px;
     }
-    .feature-item h3 {
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 18px;
+    }
+    @media (max-width: 480px) {
+      .grid-2x2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .feature-box {
+      background: var(--table-header-bg);
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+    .feature-box:hover {
+      border-color: var(--highlight-border);
+    }
+    .feature-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .feature-title {
       font-size: 16px;
-      margin-bottom: 6px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .code-tag {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--accent-tag-bg);
       color: var(--accent-color);
+      font-weight: 500;
+    }
+    .feature-desc {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .feature-detail {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-color);
+      font-size: 13px;
+      color: var(--text-main);
     }
     .faq-item {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
     .faq-item:last-child {
       margin-bottom: 0;
@@ -150,7 +201,7 @@
     .faq-item h3 {
       font-size: 16px;
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     .faq-item p {
       font-size: 14px;
@@ -158,10 +209,16 @@
     }
     .contact-box {
       background: var(--table-header-bg);
-      padding: 20px;
-      border-radius: 12px;
+      padding: 22px;
+      border-radius: 14px;
       font-size: 15px;
-      margin-top: 12px;
+      margin-top: 14px;
+    }
+    .contact-box p {
+      margin-bottom: 8px;
+    }
+    .contact-box p:last-child {
+      margin-bottom: 0;
     }
     a {
       color: var(--accent-color);
@@ -186,65 +243,306 @@
       <div class="app-icon">
         <img src="icon.png" alt="步天 Butian 图标">
       </div>
-      <h1>步天 Butian</h1>
-      <p class="subtitle">八字、奇门遁甲、紫微斗数专业排盘工具。秉持本地优先与极简私密设计理念，无广告、零追踪。</p>
+      <h1>Butian</h1>
+      <p class="subtitle">八字命理、时家奇门、紫微斗数专业排盘系统。融合现代天文历法时区计算模型与本地优先极简私密架构，无广告、零追踪。</p>
       <div class="nav-links">
-        <a href="privacy.html" class="btn btn-primary">隐私政策 (Privacy Policy)</a>
-        <a href="#support" class="btn btn-secondary">技术支持 (Support)</a>
-        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener" class="btn btn-secondary">使用条款 (EULA)</a>
+        <div class="nav-row">
+          <a href="#time-engine" class="btn btn-secondary">时间解释引擎</a>
+          <a href="#location-methods" class="btn btn-secondary">经纬度与真太阳时</a>
+          <a href="#ui-design" class="btn btn-secondary">界面与交互</a>
+          <a href="#multi-device" class="btn btn-secondary">多端生态适配</a>
+        </div>
+        <div class="nav-row">
+          <a href="privacy.html" class="btn btn-secondary">隐私政策 (Privacy Policy)</a>
+          <a href="#support" class="btn btn-secondary">技术支持 (Support)</a>
+        </div>
       </div>
     </header>
 
-    <div class="section-card">
-      <h2>核心特性</h2>
-      <div class="grid">
-        <div class="feature-item">
-          <h3>三家合一</h3>
-          <p>八字命理、时家奇门、紫微斗数排盘算法严谨，支持真太阳时校准与各派细致选项配置。</p>
+    <!-- 亮点一：排盘时间精准解释引擎 -->
+    <div class="section-card" id="time-engine">
+      <h2>精准时间解释引擎 (Time Interpretation)</h2>
+      <p class="section-desc">传统术数排盘的核心在于天时。市面普通软件常因忽略历史时区变迁或生硬处理夏令时导致时柱排错。步天依托底层 <code>chart_time_lib</code> 历法引擎，完整攻克四大历史与时区边缘难题：</p>
+      
+      <div class="grid-2x2">
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">夏令时精准辨识</span>
+            <span class="code-tag">daylightSaving</span>
+          </div>
+          <p class="feature-desc">深度匹配 IANA 历史时区数据库。针对中国 1986–1991 年夏令时及海外各国夏令时，自动识别当前输入的生辰是否正处夏令时施行期。</p>
+          <div class="feature-detail">
+            <strong>体验优势：</strong>提供明确夏令时标记与交互开关，支持用户手动确认或复原当时是否按夏令时计时，杜绝生辰排盘早晚 1 小时的偏差。
+          </div>
         </div>
-        <div class="feature-item">
-          <h3>私密安全</h3>
-          <p>所有排盘与便签笔记数据存储于设备本地或您个人的私有 iCloud，开发者无权且无法访问。</p>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">夏令时重叠小时辨析</span>
+            <span class="code-tag">overlap</span>
+          </div>
+          <p class="feature-desc">当夏令时结束当夜时钟拨回 1 小时时，同一钟点在物理时间中会重复出现两次。普通排盘软件往往无法分辨，造成干支混乱。</p>
+          <div class="feature-detail">
+            <strong>体验优势：</strong>独创重叠歧义确认机制，弹窗明确供用户选定该生辰是属于「夏令时拨回前」还是「标准时拨回后」，时柱精准无误。
+          </div>
         </div>
-        <div class="feature-item">
-          <h3>端侧离线语音</h3>
-          <p>笔记便签支持语音转文字输入，强制使用设备端离线识别引擎，音频数据不上传网络。</p>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">跳变缺失时间校准</span>
+            <span class="code-tag">daylightSavingGap</span>
+          </div>
+          <p class="feature-desc">夏令时开始当夜时钟直接快拨 1 小时，导致物理世界中该钟点时刻根本不存在（例如凌晨 02:00 直接跳至 03:00）。</p>
+          <div class="feature-detail">
+            <strong>体验优势：</strong>智能检测跳变间隙（Gap），醒目提示输入时间为历史不存在时刻，并按天文历法科学平移对其前后时辰进行合规换算。
+          </div>
         </div>
-        <div class="feature-item">
-          <h3>多端通用</h3>
-          <p>支持 iPhone、iPad 与 Mac 通用购买，一次订阅或买断即可在所有绑定的 Apple 设备上享有 Pro 权益。</p>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">历史时区与时差变迁</span>
+            <span class="code-tag">historicalOffset</span>
+          </div>
+          <p class="feature-desc">民国时期中国曾划分五大时区（中原时区、陇蜀时区、昆仑时区、回藏时区、长白时区），建国初期各省计时标准亦有多次调整。</p>
+          <div class="feature-detail">
+            <strong>体验优势：</strong>自动检索并提示该出生年份当地历史上所使用的具体时区标准，允许用户核实历史时差，彻底解决民国及历史案例排盘误区。
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- 亮点二：灵活的获取经纬度与真太阳时 -->
+    <div class="section-card" id="location-methods">
+      <h2>灵活获取经纬度与真太阳时校准</h2>
+      <p class="section-desc">真太阳时需要综合「地理经度差」与地球公转轨道产生的「时差方程（Equation of Time）」。步天提供 4 种自由灵活的经纬度获取方式，让每一盘的时间基准精准到秒：</p>
+      
+      <div class="grid-2x2">
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">地名模糊搜索输入</span>
+            <span class="code-tag">Apple Geocoding</span>
+          </div>
+          <p class="feature-desc">无需在繁杂列表中翻找！直接在搜索框输入任何自然地名、城市、甚至具体区域（如“西湖区”、“海淀区”、“尖沙咀”）。</p>
+          <div class="feature-detail">
+            <strong>体验优势：</strong>直连 Apple MapKit/CoreLocation 原生地理编码服务，秒级解析出精确至小数后六位的经纬度及对应时区。
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">设备高精度即时定位</span>
+            <span class="code-tag">GPS Positioning</span>
+          </div>
+          <p class="feature-desc">专为时家奇门即时起局、紫微斗数实时占断、八字流刻分析量身定制。一键读取设备 GPS 硬件定位。</p>
+          <div class="feature-detail">
+            <strong>体验优势：</strong>秒级获取当前所在地的真实物理坐标与当前时区，即时校准真太阳时，随时随地一键起课。
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">全球离线行政区划目录</span>
+            <span class="code-tag">Offline Catalog</span>
+          </div>
+          <p class="feature-desc">完整内置全球国家、省份/州、地级市、区县多级结构化行政区划离线数据库。</p>
+          <div class="feature-detail">
+            <strong>体验优势：</strong>在飞机飞行模式、山区或无蜂窝网络环境中，依然能随时通过层级目录精准挑选目标城市与对应经纬度。
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">经纬度坐标分秒微调</span>
+            <span class="code-tag">Fine-Tuning</span>
+          </div>
+          <p class="feature-desc">满足资深学术与职业命理师的高阶需求。不仅支持从地名带入坐标，更开放了经纬度分秒数值的手动微调。</p>
+          <div class="feature-detail">
+            <strong>体验优势：</strong>配合实时天文时差方程曲线，即时预览校准后的真太阳时与平太阳时间隔，掌握毫厘之间的时辰交替。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 亮点三：优雅的界面设计，丝滑的交互体验 -->
+    <div class="section-card" id="ui-design">
+      <h2>优雅的界面设计，丝滑的交互体验 (Design & Fluid Motion)</h2>
+      <p class="section-desc">打破传统排盘软件陈旧杂乱的刻板印象。步天将现代人机工程学设计准则与传统东方美学深度交融，让每一次起局排盘都成为赏心悦目的视觉享受：</p>
+      
+      <div class="grid-2x2">
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">东方极简墨盘美学</span>
+            <span class="code-tag">Minimal Aesthetics</span>
+          </div>
+          <p class="feature-desc">告别传统排盘杂色斑驳与广告满屏的杂乱感。以深邃典雅的墨盘 <code>#0B0D0E</code> 为底色基调，五行干支与星曜主次清晰分明。</p>
+          <div class="feature-detail">
+            <strong>设计亮点：</strong>色彩对比度均经严格视觉无障碍（A11y）标准调优，浅色纯净如宣纸，深色温润沉浸，长久批断阅盘专注温和。
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">行云流水般的微交互</span>
+            <span class="code-tag">120Hz Fluid Motion</span>
+          </div>
+          <p class="feature-desc">针对 ProMotion 120Hz 高刷新率深度调优。八字大运/流年/流月/流日多级连续横向滑动、奇门九宫信息穿透切换，毫秒级响应。</p>
+          <div class="feature-detail">
+            <strong>交互亮点：</strong>滑动手感细腻跟手，视口回弹平滑自然；页面切换无卡顿、无闪烁，指尖流转动静自如。
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">盘面与便签同屏协同</span>
+            <span class="code-tag">Co-view & Note</span>
+          </div>
+          <p class="feature-desc">看盘与做笔记不再需要在多个界面间反复跳转。独创盘面与笔记本同屏协同模式，半屏抽屉手势即呼即隐。</p>
+          <div class="feature-detail">
+            <strong>交互亮点：</strong>随盘自动记录阅读视口位置，更支持端侧离线语音秒级转文字，批盘灵感与断语随手记录、跃然盘上。
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">纯粹专注的沉浸视界</span>
+            <span class="code-tag">Distraction-Free</span>
+          </div>
+          <p class="feature-desc">坚持无广告、零干扰原则。字号、行距、宫位留白均经过精雕细琢，让命理学者与研习者能够完全专注于命盘本身的推演与参悟。</p>
+          <div class="feature-detail">
+            <strong>交互亮点：</strong>没有烦人的弹窗与推销，开箱即用，回归数术推演最本真纯净的体验。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 亮点四：深度适配 iPhone · iPad · macOS 多端生态 -->
+    <div class="section-card" id="multi-device">
+      <h2>深度适配 iPhone · iPad · macOS 多端生态 (Multi-Device Ecosystem)</h2>
+      <p class="section-desc">针对 Apple 全生态硬件特性逐一深度打磨，无论是在手机上随时随地单手推演，还是在平板与电脑大屏上沉浸深研，体验均浑然天成：</p>
+      
+      <div class="grid-2x2">
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">iPhone 移动便捷</span>
+            <span class="code-tag">iPhone Optimized</span>
+          </div>
+          <p class="feature-desc">专为单手操作深度调优，动态适配灵动岛与屏幕安全区。辅以细腻的触觉震动反馈，从口袋取出即可秒级完成即时起课与生辰排盘。</p>
+          <div class="feature-detail">
+            <strong>生态体验：</strong>手势滑动切换顺畅自然，适合日常快速查验、随时随地与友人起卦交流。
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">iPadOS 分屏与多任务</span>
+            <span class="code-tag">iPadOS Multitasking</span>
+          </div>
+          <p class="feature-desc">完美支持 Split View 分屏与 Slide Over 侧拉窗口。横屏时自动启用宽屏多栏网格布局，左侧看排盘、右侧做笔记，多任务游刃有余。</p>
+          <div class="feature-detail">
+            <strong>生态体验：</strong>充分释放 iPad 视网膜大屏生产力，满足深度命理案例研析、古籍对照研读的高阶场景。
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">macOS 桌面专业级体验</span>
+            <span class="code-tag">macOS Desktop</span>
+          </div>
+          <p class="feature-desc">专为 Mac 宽屏与鼠标、触控板交互深度调优。主盘、三世流年大运与命理便签大屏多列并列展开，一览无余，无需频繁翻页。</p>
+          <div class="feature-detail">
+            <strong>生态体验：</strong>原生支持窗口自如缩放与快捷键操作，成为书房与办公室电脑上可靠的专业数术研习台。
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">通用购买与数据无缝漫游</span>
+            <span class="code-tag">Universal & iCloud</span>
+          </div>
+          <p class="feature-desc">一次购买或订阅，您名下所有绑定的 Apple 设备统一享有「步天专业版」权益。排盘与笔记依托 Apple CloudKit 私有库在多设备间即时静默同步。</p>
+          <div class="feature-detail">
+            <strong>生态体验：</strong>手机出门起盘、平板复盘推演、电脑整理归档，设备间无缝流转，体验统一连贯。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 基础特性与隐私 -->
+    <div class="section-card">
+      <h2>原生架构与隐私设计</h2>
+      <div class="grid-2x2">
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">三术合一，系统严谨</span>
+          </div>
+          <p class="feature-desc">八字命理（子时分界/大运流年）、时家奇门（转盘/飞盘/置闰/拆补/茅山）、紫微斗数（全曜排盘/四化飞星）三大家系共用统一导航与底层天文时间快照。</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">端侧离线语音笔记</span>
+          </div>
+          <p class="feature-desc">便签支持语音转文字快速记录心得，严格限定于设备端离线识别（On-Device Speech），音频完全不落盘、不联网，绝对私密。</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">iCloud 私有库同步</span>
+          </div>
+          <p class="feature-desc">全部排盘与笔记存放在您个人的 Apple iCloud 私有数据库（Private Cloud Database）中，传输存储全程加密，开发者完全无法访问。</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-header">
+            <span class="feature-title">本地优先零追踪</span>
+          </div>
+          <p class="feature-desc">无账号登录体系、无自有服务器收集用户数据，不含任何广告或统计追踪 SDK，纯粹回归工具本质。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ & 支持 -->
     <div class="section-card" id="support">
       <h2>常见问题与技术支持 (FAQ & Support)</h2>
+      
       <div class="faq-item">
-        <h3>Q: 如何恢复在其他 Apple 设备上购买的 Pro 会员？</h3>
-        <p>A: 打开 App，进入「我的」或排盘界面的「开通 Pro」，点击底部的「恢复购买 (Restore Purchases)」按钮。系统将自动验证您当前的 Apple ID 凭证并同步会员状态。</p>
+        <h3>Q: 为什么八字排盘必须重视真太阳时与夏令时？</h3>
+        <p>A: 中国古代以日上中天（太阳处于正南最高点）为午时正。而现代钟表使用的是东八区（120°E）平太阳时。若出生于西部或东部省份，地方时差可达 1~2 小时；若遇上历史夏令时拨快 1 小时，往往会导致时柱、甚至早晚子时日柱彻底错乱。步天提供精准的历史夏令时校准与真太阳时计算，保证排盘根本基石无误。</p>
       </div>
+
       <div class="faq-item">
-        <h3>Q: 换设备后，我的排盘记录和笔记如何迁移？</h3>
-        <p>A: 只要在两台设备上登录同一个 Apple ID 并开启 iCloud 功能，步天会通过 Apple CloudKit 私有库自动静默同步全部笔记与排盘，无需手动导出导入。</p>
+        <h3>Q: 在地名搜索框输入地点查询经纬度，会泄露我的位置隐私吗？</h3>
+        <p>A: 不会。地名搜索是通过 Apple 官方系统地理编码接口（MapKit/CoreLocation）在您的设备端直接向 Apple 地图服务发起的检索，本应用既不留存您的检索记录，也没有任何自建服务器来收集您的搜索关键词。</p>
       </div>
+
       <div class="faq-item">
-        <h3>Q: 真太阳时校准需要开启定位权限吗？</h3>
-        <p>A: 可以通过授权定位即时获取当前经纬度，也可以直接在城市目录中搜索或选择您所在的行政区划，两种方式均可在本地完成精准的时间天文校正。</p>
+        <h3>Q: 如何在其他 Apple 设备上恢复已购买的「步天专业版」？</h3>
+        <p>A: 打开 App，点击左上角菜单图标展开侧边导航抽屉，在抽屉底部点击「步天专业版」进入购买页面；点击页面中的「恢复购买」按钮，系统将自动通过 Apple StoreKit 验证您当前登录的 Apple ID 历史购买记录，确认有效后即可恢复月度订阅或终身买版权益。</p>
       </div>
+
+      <div class="faq-item">
+        <h3>Q: 在 Mac 或 iPad 上使用，需要重复购买吗？</h3>
+        <p>A: 不需要。「步天」全面支持 Apple 通用购买（Universal Purchase）。只要您在设备上登录的是同一个 Apple ID，无论在 iPhone、iPad 还是 Mac 上购买，其他所有设备均自动享有完整的专业版权益，无需再次付费。</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Q: 换新设备后，我的排盘记录和笔记如何同步？</h3>
+        <p>A: 只要在两台设备上登录同一个 Apple ID 并开启 iCloud 功能，步天会通过 Apple CloudKit 私有数据库自动静默同步全部笔记与排盘，无需手动导出或传输文件。</p>
+      </div>
+
       <div class="faq-item">
         <h3>Q: 如何管理或取消自动续费订阅？</h3>
-        <p>A: 请打开 iOS 或 macOS 系统的「设置」→ 点击您的「Apple ID / 头像」→「订阅」→ 找到「步天 (Butian)」即可随时调整方案或取消续订。</p>
+        <p>A: 请打开 iOS 或 macOS 系统的「设置」→ 点击顶部的「Apple ID / 头像」→「订阅」→ 找到「步天 (Butian)」即可随时调整方案或取消自动续费。</p>
       </div>
     </div>
 
+    <!-- 联系我们 -->
     <div class="section-card">
       <h2>联系我们 (Contact & Feedback)</h2>
-      <p>如果您在使用过程中遇到任何异常、功能建议或需要帮助，欢迎随时通过邮件联系开发者：</p>
+      <p>如果您在使用过程中遇到任何异常、算法疑问、功能建议或需要帮助，欢迎随时通过邮件联系开发者：</p>
       <div class="contact-box">
         <p><strong>开发者 / 团队：</strong> Funvalvar</p>
         <p><strong>支持邮箱：</strong> <a href="mailto:funvalvar@proton.me">funvalvar@proton.me</a></p>
         <p><strong>应用包名：</strong> <code>com.funvalvar.xuan</code></p>
-        <p><strong>官方文档主页：</strong> <a href="https://butian.funvalvar.com">https://butian.funvalvar.com</a></p>
+        <p><strong>官方支持主页：</strong> <a href="https://butian.funvalvar.com">https://butian.funvalvar.com</a></p>
+        <p><strong>隐私政策网址：</strong> <a href="https://butian.funvalvar.com/privacy.html">https://butian.funvalvar.com/privacy.html</a></p>
       </div>
     </div>
 
