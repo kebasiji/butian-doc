@@ -142,7 +142,35 @@
         font-size: 13px;
       }
     }
+  
+    [data-theme="dark"] {
+      --bg-color: #0B0D0E;
+      --card-bg: #16181A;
+      --text-main: #F5F5F7;
+      --text-secondary: #A1A1A6;
+      --border-color: #2C2C2E;
+      --accent-color: #64B5F6;
+      --table-header-bg: #202326;
+    }
+    [data-theme="light"] {
+      --bg-color: #F8F9FA;
+      --card-bg: #FFFFFF;
+      --text-main: #1D1D1F;
+      --text-secondary: #6E6E73;
+      --border-color: #E5E5EA;
+      --accent-color: #1B3A4B;
+      --table-header-bg: #F2F2F7;
+    }
   </style>
+
+  <script>
+    (function() {
+      var saved = localStorage.getItem('butian-theme');
+      if (saved === 'dark' || saved === 'light') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    })();
+  </script>
 </head>
 <body>
   <div class="container">
